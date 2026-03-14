@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Study Assistant Agent</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Study Assistant Agent</h1>
+
+    <section class="card">
+      <h2>Dashboard</h2>
+      <button onclick="loadDashboard()">Refresh Dashboard</button>
+      <pre id="dashboardOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Add Note</h2>
+      <input id="subject" placeholder="Subject" />
+      <input id="title" placeholder="Title" />
+      <textarea id="content" placeholder="Paste your study note here..."></textarea>
+      <button onclick="createNote()">Save Note</button>
+      <pre id="noteOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>All Notes</h2>
+      <button onclick="loadNotes()">Load Notes</button>
+      <pre id="notesOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Summarize Note</h2>
+      <input id="summaryNoteId" type="number" placeholder="Note ID" />
+      <button onclick="summarizeNote()">Summarize</button>
+      <pre id="summaryOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Ask a Question</h2>
+      <input id="askSubject" placeholder="Optional subject filter" />
+      <textarea id="question" placeholder="Ask something based on your notes..."></textarea>
+      <button onclick="askQuestion()">Ask</button>
+      <pre id="askOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Generate Flashcards</h2>
+      <input id="flashcardNoteId" type="number" placeholder="Note ID" />
+      <input id="flashcardCount" type="number" value="5" placeholder="Count" />
+      <button onclick="generateFlashcards()">Generate Flashcards</button>
+      <pre id="flashcardOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Generate Quiz</h2>
+      <input id="quizNoteId" type="number" placeholder="Note ID" />
+      <input id="quizDifficulty" placeholder="easy / medium / hard" value="medium" />
+      <input id="quizCount" type="number" value="5" placeholder="Count" />
+      <button onclick="generateQuiz()">Generate Quiz</button>
+      <pre id="quizOutput"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Create Study Plan</h2>
+      <input id="examDate" placeholder="YYYY-MM-DD" />
+      <input id="hoursPerDay" type="number" value="2" placeholder="Hours per day" />
+      <input id="subjectsPlan" placeholder="Subjects (comma separated)" />
+      <input id="weakTopics" placeholder="Weak topics (comma separated)" />
+      <button onclick="createStudyPlan()">Create Plan</button>
+      <pre id="planOutput"></pre>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
