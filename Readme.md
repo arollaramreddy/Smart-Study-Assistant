@@ -1,9 +1,6 @@
 # Smart Study Assistant Agent
 
-An AI-powered study workspace built to experiment with **AI Agents, Retrieval-Augmented Generation (RAG), and knowledge automation**.
-
 The idea behind this project was simple:
-
 > What if a study assistant could automatically turn raw notes into summaries, flashcards, quizzes, and study plans?
 
 Instead of building a simple chatbot, this project explores how an **AI Agent system can interact with stored knowledge and generate useful learning artifacts**.
@@ -12,17 +9,14 @@ Instead of building a simple chatbot, this project explores how an **AI Agent sy
 
 # Why I Built This
 
-Students usually do a lot of manual work while studying:
+I usually do a lot of manual work while studying:
 
-* writing notes
-* summarizing them
-* making flashcards
-* creating practice quizzes
-* planning what to study before exams
+* writing notes.
+* summarizing them.
+* Remembering them.
+* planning what to study before exams/interviews.
 
-Most tools help with **only one of these tasks**.
-
-I wanted to build something that acts more like an **intelligent study assistant** — something that understands notes and can automatically generate useful study materials from them.
+I wanted to build something that acts more like an **intelligent study assistant** — something that understands notes and can automatically generate useful study materials from me.
 
 At the same time, this project was also a way to experiment with:
 
@@ -44,13 +38,11 @@ Once you add notes, the agent can generate several useful outputs.
 ## 1. Store and Manage Notes
 
 Users can save notes with:
-
 * subject
 * title
 * content
 
 These notes become the **knowledge base** for the AI assistant.
-
 Later, the agent retrieves information from these notes when generating answers or study material.
 
 ---
@@ -58,7 +50,6 @@ Later, the agent retrieves information from these notes when generating answers 
 ## 2. Generate AI Summaries
 
 The assistant can transform long notes into:
-
 * short summaries
 * key concepts
 * important takeaways
@@ -71,11 +62,9 @@ This helps students quickly review large amounts of material.
 ## 3. Ask Questions from Notes (RAG)
 
 Users can ask questions like:
-
 > “Explain this concept from my notes.”
 
 The system then:
-
 1. searches the stored notes
 2. retrieves relevant sections
 3. sends them as context to the language model
@@ -92,7 +81,6 @@ It ensures answers are based on the user’s notes instead of the model guessing
 The assistant can automatically create flashcards from notes.
 
 Flashcards help with:
-
 * quick revision
 * active recall
 * spaced repetition learning
@@ -112,7 +100,6 @@ A technique where relevant documents are retrieved and provided as context to a 
 The system can also generate quizzes from notes.
 
 These quizzes may include:
-
 * multiple choice questions
 * short answer questions
 * answer keys
@@ -124,7 +111,6 @@ This helps students test their understanding.
 ## 6. Create Study Plans
 
 The assistant can generate a structured study plan based on:
-
 * exam date
 * available study hours
 * subjects
@@ -355,8 +341,8 @@ Responsible for:
 ## 1. Clone the repository
 
 ```
-git clone https://github.com/yourusername/smart-study-assistant.git
-cd smart-study-assistant
+git clone https://github.com/arollaramreddy/Smart-Study-Assistant.git
+cd Smart-Study-Assistant
 ```
 
 ---
@@ -444,7 +430,7 @@ http://localhost:3000
 
 Yes… the UI could definitely be better.
 
-If you're a designer, you might look at it and feel an uncontrollable urge to redesign everything in Figma — and honestly, that's fair.
+If you're a designer, you might look at it and feel an uncontrollable urge to redesign everything — and honestly, that's fair.
 
 But the main goal of this project wasn't to win a **frontend beauty contest**.
 
@@ -456,16 +442,12 @@ The focus was on experimenting with:
 
 The UI just needed to be **functional enough to test the agent capabilities**.
 
-Think of it more like a **control panel for the AI system** rather than a polished production interface.
-
 If this were turned into a real product, the next steps would definitely include improving:
 
 * UX flows
 * interactive flashcards
 * better quiz interfaces
 * a more refined dashboard
-
-But for now, the priority was making the **brains work, not the fashion.**
 
 ---
 
@@ -488,7 +470,8 @@ AI
 
 * Large Language Models
 * Retrieval-Augmented Generation (RAG)
-* AI Agent architecture
+* LangChain
+* LangGraph
 
 ---
 
@@ -500,21 +483,9 @@ Some ideas for extending this project:
 * embeddings-based search
 * PDF / document upload
 * multi-user authentication
-* spaced repetition flashcards
 * quiz scoring system
 * adaptive study recommendations
 
 ---
 
-# Final Thoughts
 
-This project demonstrates how **AI agents can be integrated into practical applications** to automate knowledge workflows.
-
-By combining:
-
-* retrieval systems
-* large language models
-* structured APIs
-* simple interfaces
-
-we can build intelligent tools that help users learn more efficiently.
