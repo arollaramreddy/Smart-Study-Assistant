@@ -3,77 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smart Study Assistant Agent</title>
+  <title>Smart Study Assistant</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Smart Study Assistant Agent</h1>
+    <h3>Ramreddy Arolla | arollaramreddy@gmail.com</h3>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon">S</div>
+        <div>
+          <h1>StudyAI</h1>
+          <p>Smart Study Assistant</p>
+        </div>
+      </div>
 
-    <section class="card">
-      <h2>Dashboard</h2>
-      <button onclick="loadDashboard()">Refresh Dashboard</button>
-      <pre id="dashboardOutput"></pre>
-    </section>
+      <nav class="nav">
+        <a href="#dashboard" class="nav-item active">Dashboard</a>
+        <a href="#notes" class="nav-item">Notes</a>
+        <a href="#summary" class="nav-item">Summaries</a>
+        <a href="#qa" class="nav-item">Q&A</a>
+        <a href="#flashcards" class="nav-item">Flashcards</a>
+        <a href="#quiz" class="nav-item">Quizzes</a>
+        <a href="#planner" class="nav-item">Study Planner</a>
+      </nav>
 
-    <section class="card">
-      <h2>Add Note</h2>
-      <input id="subject" placeholder="Subject" />
-      <input id="title" placeholder="Title" />
-      <textarea id="content" placeholder="Paste your study note here..."></textarea>
-      <button onclick="createNote()">Save Note</button>
-      <pre id="noteOutput"></pre>
-    </section>
+      <div class="sidebar-footer">
+        <p>Learn smarter, not harder.</p>
+      </div>
+    </aside>
 
-    <section class="card">
-      <h2>All Notes</h2>
-      <button onclick="loadNotes()">Load Notes</button>
-      <pre id="notesOutput"></pre>
-    </section>
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2>Welcome back</h2>
+          <p>Organize notes, revise faster, and generate smart study materials.</p>
+        </div>
+        <button class="ghost-btn" onclick="loadDashboard()">Refresh Dashboard</button>
+      </header>
 
-    <section class="card">
-      <h2>Summarize Note</h2>
-      <input id="summaryNoteId" type="number" placeholder="Note ID" />
-      <button onclick="summarizeNote()">Summarize</button>
-      <pre id="summaryOutput"></pre>
-    </section>
+      <section class="stats-grid" id="dashboard">
+        <div class="stat-card">
+          <span class="stat-label">Notes</span>
+          <h3 id="statNotes">0</h3>
+          <p>Total saved study notes</p>
+        </div>
 
-    <section class="card">
-      <h2>Ask a Question</h2>
-      <input id="askSubject" placeholder="Optional subject filter" />
-      <textarea id="question" placeholder="Ask something based on your notes..."></textarea>
-      <button onclick="askQuestion()">Ask</button>
-      <pre id="askOutput"></pre>
-    </section>
+        <div class="stat-card">
+          <span class="stat-label">Flashcards</span>
+          <h3 id="statFlashcards">0</h3>
+          <p>Generated revision cards</p>
+        </div>
 
-    <section class="card">
-      <h2>Generate Flashcards</h2>
-      <input id="flashcardNoteId" type="number" placeholder="Note ID" />
-      <input id="flashcardCount" type="number" value="5" placeholder="Count" />
-      <button onclick="generateFlashcards()">Generate Flashcards</button>
-      <pre id="flashcardOutput"></pre>
-    </section>
+        <div class="stat-card">
+          <span class="stat-label">Quizzes</span>
+          <h3 id="statQuizzes">0</h3>
+          <p>Practice sets created</p>
+        </div>
 
-    <section class="card">
-      <h2>Generate Quiz</h2>
-      <input id="quizNoteId" type="number" placeholder="Note ID" />
-      <input id="quizDifficulty" placeholder="easy / medium / hard" value="medium" />
-      <input id="quizCount" type="number" value="5" placeholder="Count" />
-      <button onclick="generateQuiz()">Generate Quiz</button>
-      <pre id="quizOutput"></pre>
-    </section>
+        <div class="stat-card">
+          <span class="stat-label">Study Plans</span>
+          <h3 id="statPlans">0</h3>
+          <p>Personalized plans built</p>
+        </div>
+      </section>
 
-    <section class="card">
-      <h2>Create Study Plan</h2>
-      <input id="examDate" placeholder="YYYY-MM-DD" />
-      <input id="hoursPerDay" type="number" value="2" placeholder="Hours per day" />
-      <input id="subjectsPlan" placeholder="Subjects (comma separated)" />
-      <input id="weakTopics" placeholder="Weak topics (comma separated)" />
-      <button onclick="createStudyPlan()">Create Plan</button>
-      <pre id="planOutput"></pre>
-    </section>
+      <section class="hero-card">
+        <div>
+          <span class="badge">AI Study Workspace</span>
+          <h2>Everything you need for revision in one place</h2>
+          <p>
+            Add notes, ask questions from your material, create flashcards,
+            generate quizzes, and build a study plan for exams.
+          </p>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel" id="notes">
+          <div class="panel-header">
+            <h3>Add Note</h3>
+            <span class="panel-tag">Input</span>
+          </div>
+          <div class="form-grid">
+            <input id="subject" placeholder="Subject" />
+            <input id="title" placeholder="Title" />
+          </div>
+          <textarea id="content" placeholder="Paste your study note here..."></textarea>
+          <button onclick="createNote()">Save Note</button>
+          <pre id="noteOutput">Your saved note result will appear here.</pre>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>All Notes</h3>
+            <span class="panel-tag">Library</span>
+          </div>
+          <button onclick="loadNotes()">Load Notes</button>
+          <pre id="notesOutput">Your notes list will appear here.</pre>
+        </div>
+
+        <div class="panel" id="summary">
+          <div class="panel-header">
+            <h3>Summarize Note</h3>
+            <span class="panel-tag">AI</span>
+          </div>
+          <input id="summaryNoteId" type="number" placeholder="Note ID" />
+          <button onclick="summarizeNote()">Generate Summary</button>
+          <pre id="summaryOutput">Summary output will appear here.</pre>
+        </div>
+
+        <div class="panel" id="qa">
+          <div class="panel-header">
+            <h3>Ask a Question</h3>
+            <span class="panel-tag">RAG</span>
+          </div>
+          <input id="askSubject" placeholder="Optional subject filter" />
+          <textarea id="question" placeholder="Ask something based on your notes..."></textarea>
+          <button onclick="askQuestion()">Ask AI</button>
+          <pre id="askOutput">Your answer will appear here.</pre>
+        </div>
+
+        <div class="panel" id="flashcards">
+          <div class="panel-header">
+            <h3>Generate Flashcards</h3>
+            <span class="panel-tag">Revision</span>
+          </div>
+          <div class="form-grid">
+            <input id="flashcardNoteId" type="number" placeholder="Note ID" />
+            <input id="flashcardCount" type="number" value="5" placeholder="Count" />
+          </div>
+          <button onclick="generateFlashcards()">Create Flashcards</button>
+          <pre id="flashcardOutput">Flashcards will appear here.</pre>
+        </div>
+
+        <div class="panel" id="quiz">
+          <div class="panel-header">
+            <h3>Generate Quiz</h3>
+            <span class="panel-tag">Practice</span>
+          </div>
+          <div class="form-grid">
+            <input id="quizNoteId" type="number" placeholder="Note ID" />
+            <input id="quizDifficulty" placeholder="easy / medium / hard" value="medium" />
+          </div>
+          <input id="quizCount" type="number" value="5" placeholder="Question count" />
+          <button onclick="generateQuiz()">Generate Quiz</button>
+          <pre id="quizOutput">Quiz output will appear here.</pre>
+        </div>
+
+        <div class="panel panel-wide" id="planner">
+          <div class="panel-header">
+            <h3>Create Study Plan</h3>
+            <span class="panel-tag">Planner</span>
+          </div>
+          <div class="form-grid">
+            <input id="examDate" placeholder="Exam Date (YYYY-MM-DD)" />
+            <input id="hoursPerDay" type="number" value="2" placeholder="Hours per day" />
+          </div>
+          <input id="subjectsPlan" placeholder="Subjects (comma separated)" />
+          <input id="weakTopics" placeholder="Weak topics (comma separated)" />
+          <button onclick="createStudyPlan()">Create Study Plan</button>
+          <pre id="planOutput">Study plan will appear here.</pre>
+        </div>
+      </section>
+    </main>
   </div>
-
+  
   <script src="app.js"></script>
 </body>
 </html>

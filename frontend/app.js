@@ -26,35 +26,45 @@ function pretty(obj) {
   return JSON.stringify(obj, null, 2);
 }
 
+function show(elId, value) {
+  document.getElementById(elId).textContent =
+    typeof value === "string" ? value : pretty(value);
+}
+
 async function loadDashboard() {
   try {
     const data = await request("/dashboard");
-    document.getElementById("dashboardOutput").textContent = pretty(data);
+    document.getElementById("statNotes").textContent = data.notes_count ?? 0;
+    document.getElementById("statFlashcards").textContent = data.flashcards_count ?? 0;
+    document.getElementById("statQuizzes").textContent = data.quizzes_count ?? 0;
+    document.getElementById("statPlans").textContent = data.study_plans_count ?? 0;
   } catch (err) {
-    document.getElementById("dashboardOutput").textContent = err.message;
+    console.error(err);
   }
 }
 
 async function createNote() {
   try {
     const payload = {
-      subject: document.getElementById("subject").value,
-      title: document.getElementById("title").value || "Untitled Note",
-      content: document.getElementById("content").value
+      subject: document.getElementById("subject").value.trim(),
+      title: document.getElementById("title").value.trim() || "Untitled Note",
+      content: document.getElementById("content").value.trim()
     };
+
     const data = await request("/notes", "POST", payload);
-    document.getElementById("noteOutput").textContent = pretty(data);
+    show("noteOutput", data);
+    loadDashboard();
   } catch (err) {
-    document.getElementById("noteOutput").textContent = err.message;
+    show("noteOutput", err.message);
   }
 }
 
 async function loadNotes() {
   try {
     const data = await request("/notes");
-    document.getElementById("notesOutput").textContent = pretty(data);
+    show("notesOutput", data);
   } catch (err) {
-    document.getElementById("notesOutput").textContent = err.message;
+    show("notesOutput", err.message);
   }
 }
 
@@ -63,23 +73,25 @@ async function summarizeNote() {
     const payload = {
       note_id: Number(document.getElementById("summaryNoteId").value)
     };
+
     const data = await request("/summarize", "POST", payload);
-    document.getElementById("summaryOutput").textContent = data.summary;
+    show("summaryOutput", data.summary);
   } catch (err) {
-    document.getElementById("summaryOutput").textContent = err.message;
+    show("summaryOutput", err.message);
   }
 }
 
 async function askQuestion() {
   try {
     const payload = {
-      question: document.getElementById("question").value,
-      subject: document.getElementById("askSubject").value || null
+      question: document.getElementById("question").value.trim(),
+      subject: document.getElementById("askSubject").value.trim() || null
     };
+
     const data = await request("/ask", "POST", payload);
-    document.getElementById("askOutput").textContent = pretty(data);
+    show("askOutput", data);
   } catch (err) {
-    document.getElementById("askOutput").textContent = err.message;
+    show("askOutput", err.message);
   }
 }
 
@@ -89,10 +101,12 @@ async function generateFlashcards() {
       note_id: Number(document.getElementById("flashcardNoteId").value),
       count: Number(document.getElementById("flashcardCount").value)
     };
+
     const data = await request("/flashcards/generate", "POST", payload);
-    document.getElementById("flashcardOutput").textContent = pretty(data.flashcards);
+    show("flashcardOutput", data.flashcards);
+    loadDashboard();
   } catch (err) {
-    document.getElementById("flashcardOutput").textContent = err.message;
+    show("flashcardOutput", err.message);
   }
 }
 
@@ -100,20 +114,22 @@ async function generateQuiz() {
   try {
     const payload = {
       note_id: Number(document.getElementById("quizNoteId").value),
-      difficulty: document.getElementById("quizDifficulty").value,
+      difficulty: document.getElementById("quizDifficulty").value.trim() || "medium",
       count: Number(document.getElementById("quizCount").value)
     };
+
     const data = await request("/quiz/generate", "POST", payload);
-    document.getElementById("quizOutput").textContent = pretty(data.quiz);
+    show("quizOutput", data.quiz);
+    loadDashboard();
   } catch (err) {
-    document.getElementById("quizOutput").textContent = err.message;
+    show("quizOutput", err.message);
   }
 }
 
 async function createStudyPlan() {
   try {
     const payload = {
-      exam_date: document.getElementById("examDate").value,
+      exam_date: document.getElementById("examDate").value.trim(),
       hours_per_day: Number(document.getElementById("hoursPerDay").value),
       subjects: document.getElementById("subjectsPlan").value
         .split(",")
@@ -124,10 +140,12 @@ async function createStudyPlan() {
         .map(x => x.trim())
         .filter(Boolean)
     };
+
     const data = await request("/study-plan", "POST", payload);
-    document.getElementById("planOutput").textContent = pretty(data.plan);
+    show("planOutput", data.plan);
+    loadDashboard();
   } catch (err) {
-    document.getElementById("planOutput").textContent = err.message;
+    show("planOutput", err.message);
   }
 }
 
